@@ -21,7 +21,7 @@ class ImageController extends GetxController {
       }
       update();
     } finally {
-      isLoading(false);
+      isLoading(true);
       update();
     }
   }

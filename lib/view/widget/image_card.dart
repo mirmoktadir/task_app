@@ -24,11 +24,12 @@ class ImageCard extends StatelessWidget {
       child: ClipRRect(
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16.0),
-              image: DecorationImage(
-                image: NetworkImage(imageUrl.toString()),
-                fit: BoxFit.cover,
-              )),
+            borderRadius: BorderRadius.circular(16.0),
+            image: DecorationImage(
+              image: NetworkImage(imageUrl.toString()),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );
@@ -63,13 +64,13 @@ class ImageCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            width: 120,
-                            child: Text(
+                      SizedBox(
+                        width: 120,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
                               name.toString(),
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
@@ -77,21 +78,35 @@ class ImageCard extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                          ),
-                          Text(brand.toString()),
-                        ],
+                            Text(
+                              brand.toString(),
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black.withOpacity(.6),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: AppColor.primaryColor.withOpacity(.07),
+                  SizedBox(
+                    height: 45,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 4),
+                        primary: AppColor.primaryColor
+                            .withOpacity(.07), // background
+
+                        elevation: 0, // foreground
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16), // <-- Radius
+                        ),
                       ),
+                      onPressed: () {},
                       child: Row(
                         children: const [
                           Icon(
@@ -123,18 +138,24 @@ class ImageCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 44,
-                decoration: BoxDecoration(
-                  color: AppColor.lightGrey,
-                  borderRadius: BorderRadius.circular(15),
+            SizedBox(
+              height: 45,
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: AppColor.lightGrey, // background
+                  onPrimary: Colors.black,
+                  elevation: 0, // foreground
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15), // <-- Radius
+                  ),
                 ),
-                child: const Center(
-                  child: Text(
-                    'View Post',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                onPressed: () {},
+                child: const Text(
+                  'View Post',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
